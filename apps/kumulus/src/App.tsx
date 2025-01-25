@@ -1,8 +1,12 @@
 import { createRoot } from "react-dom/client";
+import KollectyveWelcome from "@repo/ui/kollectvye"
 
 const App = () => {
   return (
-    <h1>Kumulus Cloud</h1> 
+    <>
+    <h1> Kumulus</h1> 
+    <KollectyveWelcome /> 
+    </>
   );
 };
 

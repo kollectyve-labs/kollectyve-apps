@@ -1,9 +1,12 @@
 import { createRoot } from "react-dom/client";
-import Dashboard from "./components/Dashboard";
+import KollectyveWelcome from "@repo/ui/kollectvye"
 
 const App = () => {
   return (
-    <Dashboard /> 
+    <>
+    <h1> Kollai</h1> 
+    <KollectyveWelcome /> 
+    </>
   );
 };
 
