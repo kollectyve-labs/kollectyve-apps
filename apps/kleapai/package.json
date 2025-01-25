@@ -12,7 +12,7 @@
   "keywords": [],
   "type": "module",
   "author": "Kollectyve Network",
-  "description": "Kleapai (Kollectyve Leap AI) Platform Frontend Portal",
+  "description": "K-Leap-Ai (Kollectyve Leap AI) Platform Frontend Portal",
   "devDependencies": {
     "@types/react": "^19.0.2",
     "@types/react-dom": "^19.0.2",
