@@ -1,5 +1,5 @@
 {
-  "name": "kollai",
+  "name": "kleapai",
   "version": "0.1.0",
   "main": "index.js",
   "scripts": {
@@ -12,7 +12,7 @@
   "keywords": [],
   "type": "module",
   "author": "Kollectyve Network",
-  "description": "Kollai Platform Frontend Portal",
+  "description": "Kleapai (Kollectyve Leap AI) Platform Frontend Portal",
   "devDependencies": {
     "@types/react": "^19.0.2",
     "@types/react-dom": "^19.0.2",
