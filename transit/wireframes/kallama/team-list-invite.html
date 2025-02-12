@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Team Management</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            text-align: center;
+        }
+        .team-list {
+            list-style: none;
+            padding: 0;
+        }
+        .team-member {
+            background: #e9ecef;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+        }
+        .role {
+            font-weight: bold;
+            color: #007bff;
+        }
+        .invite {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .invite input {
+            padding: 8px;
+            width: 70%;
+            margin-right: 10px;
+        }
+        .invite button {
+            padding: 8px;
+            background: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Team Management</h2>
+        <ul class="team-list">
+            <li class="team-member">John Doe <span class="role">Linguist</span></li>
+            <li class="team-member">Jane Smith <span class="role">Voice Actor</span></li>
+            <li class="team-member">Alex Johnson <span class="role">Engineer</span></li>
+        </ul>
+        <div class="invite">
+            <input type="text" placeholder="Enter email to invite...">
+            <button>Invite</button>
+        </div>
+    </div>
+</body>
+</html>
