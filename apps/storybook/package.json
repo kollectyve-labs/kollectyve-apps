@@ -12,7 +12,7 @@
     "build-storybook": "storybook build"
   },
   "dependencies": {
-    "@repo/ui": "^0.0.0",
+    "@repo/ui": "workspace:*",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   },
