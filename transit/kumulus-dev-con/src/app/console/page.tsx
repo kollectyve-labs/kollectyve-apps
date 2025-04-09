@@ -9,7 +9,19 @@ import SelectableButtons from "../components/buttons/osSelectButtons";
 import { SearchInput } from "../components/buttons/search";
 import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem, SelectGroup, SelectLabel } from '../components/select/select';
 import { Button } from "@repo/ui/components/button";
+import { Textarea } from "@repo/ui/components/textarea";
 
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@repo/ui/components/alert-dialog";
 
 const sizes: string[] = ['Nano', 'Micro', 'Small', 'Medium', 'Large', 'Custom'];
 
@@ -136,33 +148,30 @@ const Console: React.FC = () => {
     let VMversion;
     if (activeButton === "OS") {
       VMversion = {
-        OS: selectedOS,
-        version: selectedVersion,
-        marketplace: null,
+        "type": null,
+        "deploymentId":"my-id"
       };
     } else if (activeButton === "Marketplace") {
       VMversion = {
-        OS: selectedOS,
-        version: selectedVersion,
-        marketplace: clickedMarketPlace,
+        "type": clickedMarketPlace,
+        "deploymentId":"my-id"
       };
     } else {
         VMversion = {
-            OS: null,
-            version: null,
-            marketplace: null,
+          "type": null,
+          "deploymentId": null
         };
     }
 
-    console.log(JSON.stringify({ VMRequest, VMversion }, null, 2));
+    console.log(JSON.stringify({VMversion }, null, 2));
 
     try {
-      const response = await fetch('/api/createVM', {
+      const response = await fetch('http://localhost:8800/create-app', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ VMRequest, VMversion }),
+        body: JSON.stringify({ VMversion }),
       });
 
       if (!response.ok) {
@@ -182,13 +191,13 @@ const Console: React.FC = () => {
   };
 
   return (
-    <div className="w-[90%] h-[100%] bg-[#f0f2f5] p-5 overflow-y-scroll">
+    <div className="bg-[#f0f2f5] h-[100%] p-5 w-[90%] overflow-y-scroll">
     <Header Title="Virtual Machine Creation" />
 
-    <div className="flex flex-row between justify-between">
-      <div className="bg-white w-[100%] p-6 flex">
+    <div className="flex flex-row justify-between between">
+      <div className="flex bg-white p-6 w-[100%]">
         <div className="flex flex-col">
-          <h2 className="font-bold text-[1.5em] text-black pb-4">
+          <h2 className="text-[1.5em] text-black font-bold pb-4">
             Choose an Image
           </h2>
           <div className="flex flex-col gap-2">
@@ -220,10 +229,10 @@ const Console: React.FC = () => {
         </div>
       </div>
   
-      <div className="bg-white px-6  w-[100%] h-fit mt-4 flex max-[1200px]:flex-col rounded-lg mb-6">
-        <div className="w-[69%] h-[100%] flex flex-col max-[1200px]:w-[100%] ">
-          <h2 className="font-bold py-6 text-[1.5em] text-black pb-4">Choose Size</h2>
-          <div className="w-[95%] h-[60px] border-2 border-[#6200ee] flex rounded-lg">
+      <div className="flex bg-white h-fit rounded-lg w-[100%] max-[1200px]:flex-col mb-6 mt-4 px-6">
+        <div className="flex flex-col h-[100%] w-[69%] max-[1200px]:w-[100%]">
+          <h2 className="text-[1.5em] text-black font-bold pb-4 py-6">Choose Size</h2>
+          <div className="flex border-[#6200ee] border-2 h-[60px] rounded-lg w-[95%]">
             {sizes.map((size, index) => (
               <div
                 key={size}
@@ -240,20 +249,20 @@ const Console: React.FC = () => {
               </div>
             ))}
           </div>
-          <p className="text-gray-700 text-[1.25em] w-[90%] pb-8 font-medium pt-4">
+          <p className="text-[1.25em] text-gray-700 w-[90%] font-medium pb-8 pt-4">
             Our decentralized cloud platform provides flexible compute options for any workload.  
             Whether you need the efficiency of a{" "}
             {(Object.keys(tooltips) as Array<keyof typeof tooltips>).map((size, index, arr) => (
               <span
                 key={size}
-                className="relative text-[#6200ee] font-semibold cursor-pointer"
+                className="text-[#6200ee] cursor-pointer font-semibold relative"
                 onMouseEnter={() => setHovered(size)}
                 onMouseLeave={() => setHovered(null)}
               >
                 {size}
                 {index !== arr.length - 1 && ","} {/* Adds commas between items */}
                 {hovered === size && (
-                  <span className="absolute left-1/2 -translate-x-1/2 top-full mt-2 px-3 py-1 bg-gray-800 text-white text-sm rounded-lg shadow-md whitespace-nowrap z-50">
+                  <span className="bg-gray-800 rounded-lg shadow-md text-sm text-white -translate-x-1/2 absolute left-1/2 mt-2 px-3 py-1 top-full whitespace-nowrap z-50">
                     {tooltips[size]}
                   </span>
                 )}
@@ -263,17 +272,17 @@ const Console: React.FC = () => {
           </p>
         </div>
         {/* Selected Size Specifications */}
-        <div className="w-[2px] bg-[#6200ee]  max-[1200px]:h-[2px] max-[1200px]:w-full ">
-          <div className="h-full max-[1200px]:h-[2px] max-[1200px]:w-full  "></div>
+        <div className="bg-[#6200ee] w-[2px] max-[1200px]:h-[2px] max-[1200px]:w-full">
+          <div className="h-full max-[1200px]:h-[2px] max-[1200px]:w-full"></div>
         </div>
-        {/* <div className="h-[2px]  bg-[#6200ee] ">
+        {/* <div className="bg-[#6200ee] h-[2px]">
           <div className="w-[100px"></div> 
         </div> */}
         {selectedSize && (
           
           <div className="mt-6 pb-6">
-            <h4 className="font-semibold text-[1.5em] text-black pl-6 pb-4 ">Specifications for <strong className="text-[#6200ee]">{selectedSize} </strong></h4>
-            <div className="pl-6 font-medium text-[2em]">
+            <h4 className="text-[1.5em] text-black font-semibold pb-4 pl-6">Specifications for <strong className="text-[#6200ee]">{selectedSize} </strong></h4>
+            <div className="text-[2em] font-medium pl-6">
               {selectedSize === "Custom" ? (
                 <div className="flex flex-col gap-4">
                   <div>
@@ -282,7 +291,7 @@ const Console: React.FC = () => {
                       id="vcpus"
                       value={customSpecs.vcpus}
                       onChange={(e) => handleCustomSpecsChange("vcpus", e.target.value)}
-                      className="w-[180px] ml-2 p-2 border rounded-lg mt-2"
+                      className="border p-2 rounded-lg w-[180px] ml-2 mt-2"
                     >
                       <option value="2">2 vCPUs</option>
                       <option value="4">4 vCPUs</option>
@@ -298,7 +307,7 @@ const Console: React.FC = () => {
                     
                       value={customSpecs.ram}
                       onChange={(e) => handleCustomSpecsChange("ram", e.target.value)}
-                      className="w-[180px] ml-2 p-2 border rounded-lg mt-2"
+                      className="border p-2 rounded-lg w-[180px] ml-2 mt-2"
                     >
                       <option value="2GB">2GB</option>
                       <option value="4GB">4GB</option>
@@ -314,7 +323,7 @@ const Console: React.FC = () => {
                       id="storage"
                       value={customSpecs.storage}
                       onChange={(e) => handleCustomSpecsChange("storage", e.target.value)}
-                      className="w-[180px] ml-2 p-2 border rounded-lg mt-2"
+                      className="border p-2 rounded-lg w-[180px] ml-2 mt-2"
                     >
                       <option value="10GB">10GB</option>
                       <option value="20GB">20GB</option>
@@ -338,20 +347,71 @@ const Console: React.FC = () => {
 
 
 
-<div className="py-[2px] rounded-lg flex flex-row place-content-between align-middle">
-  <h2 className="font-bold text-[1.5em] text-red-500 pb-4">
+<div className="flex flex-row align-middle rounded-lg place-content-between py-[2px]">
+  <h2 className="text-[1.5em] text-red-500 font-bold pb-4">
   {errorMessage}
   </h2>
         {/* <button
-          className="inline-flex ml-auto items-center justify-center rounded-lg bg-black px-6 py-3 text-sm font-medium text-white transition-all duration-300 hover:scale-105 hover:shadow-lg active:scale-95 active:bg-[#6200ee] active:shadow-none disabled:opacity-50"
+          className="bg-black justify-center rounded-lg text-sm text-white active:bg-[#6200ee] active:scale-95 active:shadow-none disabled:opacity-50 duration-300 font-medium hover:scale-105 hover:shadow-lg inline-flex items-center ml-auto px-6 py-3 transition-all"
           onClick={handleSubmit} >
     Submit
   </button> */}
-  <Button
+  {/* <Button
     onClick={() => {}}
     size="default"
     variant="default"
-  > Submit </Button>
+  > Submit </Button> */}
+
+<AlertDialog>
+      <AlertDialogTrigger asChild>
+        <Button className="bg-black text-white hover:bg-gray-900">Submit</Button>
+      </AlertDialogTrigger>
+
+      <AlertDialogContent>
+        <AlertDialogHeader>
+          <AlertDialogTitle>Are you sure you want to finalize the VM creation?</AlertDialogTitle>
+          <AlertDialogDescription>
+            This action will complete the Kumulus virtual machine setup. Once confirmed, 
+            the VM will be provisioned and changes may not be reversible. Please follow these steps:
+          </AlertDialogDescription>
+        </AlertDialogHeader>
+
+        <div className="mb-4">
+          <p className="text-sm font-medium text-gray-700">
+            <strong>Step 1:</strong> If you don't have an SSH key, run the following command to generate one:
+          </p>
+          <pre className="bg-gray-100 p-2 rounded-md text-sm text-gray-800">
+            ssh-keygen -t rsa -b 2048 -N "" -f ~/.ssh/id_rsa
+          </pre>
+
+          <p className="text-sm font-medium text-gray-700 mt-2">
+            <strong>Step 2:</strong> After generating your SSH key, run this command to display your public key:
+          </p>
+          <pre className="bg-gray-100 p-2 rounded-md text-sm text-gray-800">
+            cat ~/.ssh/id_rsa.pub
+          </pre>
+
+          <p className="text-sm font-medium text-gray-700 mt-2">
+            <strong>Step 3:</strong> Copy the SSH public key from the output of the above command and paste it below:
+          </p>
+
+          <Textarea
+            id="ssh-key"
+            className="mt-2 block w-full h-32 border border-gray-300 rounded-lg p-2"
+            placeholder="Paste your SSH public key here..."
+            // value={sshKey}
+            // onChange={(e) => setSshKey(e.target.value)} // Update SSH key on change
+          />
+
+        </div>
+
+        <AlertDialogFooter>
+          <AlertDialogCancel>Cancel</AlertDialogCancel>
+          <AlertDialogAction onClick={handleSubmit}>Confirm Creation</AlertDialogAction>
+        </AlertDialogFooter>
+      </AlertDialogContent>
+    </AlertDialog>
+
 </div>
     </div>
   );
