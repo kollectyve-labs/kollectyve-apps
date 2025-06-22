@@ -70,14 +70,14 @@ const config: Config = {
     // Replace with your project's social card
     image: 'img/docusaurus-social-card.jpg',
     navbar: {
-      title: 'My Site',
+      title: 'Kollectyve Blog',
       logo: {
-        alt: 'My Site Logo',
-        src: 'img/logo.svg',
+        alt: 'Kollectyve Blog Logo',
+        src: 'img/logo.png',
       },
       items: [
         {
-          href: 'https://github.com/facebook/docusaurus',
+          href: 'https://github.com/kollectyve-labs/kollectyve-apps',
           label: 'GitHub',
           position: 'right',
         },
@@ -90,16 +90,16 @@ const config: Config = {
           title: 'Community',
           items: [
             {
-              label: 'Stack Overflow',
-              href: 'https://stackoverflow.com/questions/tagged/docusaurus',
+              label: 'WhatsApp',
+              href: 'https://whatsapp.com/channel/0029VaGZZxcKgsNmL45rry0A',
             },
             {
               label: 'Discord',
-              href: 'https://discordapp.com/invite/docusaurus',
+              href: 'https://discord.com/invite/ybfe9EjB',
             },
             {
               label: 'X',
-              href: 'https://x.com/docusaurus',
+              href: 'https://x.com/kollectyve',
             },
           ],
         },
@@ -108,11 +108,11 @@ const config: Config = {
           items: [
             {
               label: 'Blog',
-              to: '/blog',
+              href: 'https://blog.kollectyve.network',
             },
             {
               label: 'GitHub',
-              href: 'https://github.com/facebook/docusaurus',
+              href: 'https://github.com/kollectyve-labs',
             },
           ],
         },
