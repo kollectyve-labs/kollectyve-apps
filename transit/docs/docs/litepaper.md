@@ -1,5 +1,5 @@
 ---
-sidebar_position: 1
+sidebar_position: 2
 ---
 
 # Litepaper
@@ -20,20 +20,26 @@ Africa today stands at the edge of a digital revolution. From lively city market
 (WIP)
 ### 🧠 2. Kleap AI 
 (WIP)
-### 💸 3. DeFi / HiFi (Hybrid Finance)
+### 💸 3. Finance HyFi (Hybrid Finance)
 (WIP)
-
 ### 🛠️ 4. GrandPlace (Ecosystem)
 (WIP)
 
 ## 🌍 Use Cases & Impact
 (WIP)
 
-
-## 🛤️ Roadmap
+## 🛤️ Protocol Roadmap
 | Phase | Milestone | Date |
 |-------|-----------|------|
 | -     | -| -|
 
+## 💸 $BRIQUE Token
+(WIP)
 
+## Community
+
+X (Twitter)
+Linkedin
+Discord
+Telegram
 

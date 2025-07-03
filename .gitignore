@@ -40,3 +40,8 @@ yarn-error.log*
 # Storybook
 storybook-static
 */node_modules
+
+# Firebase
+**/.firebase/
+transit/blog/.firebase/
+transit/docs/.firebase/
